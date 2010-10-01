@@ -15,10 +15,13 @@ return array(
 			'error_lang' => 'en_US',
 			'paypal_account' => 'paypal@example.com',
 			'paypal_micro_account' => 'paypal-micro@paypal.com', // see http://goo.gl/Z4yF 
-			'authenticaticon_url' => 'https://api-3t.paypal.com/nvp',
+			'authentication_url' => 'https://api-3t.paypal.com/nvp',
 			'authentication_version' => '64.0',
 			'webscr_url' => 'https://www.paypal.com/cgi-bin/webscr',
 			'adaptive_url' => 'https://svcs.paypal.com',
+			'auth_return_url' => 'http://example.com/return',
+			'auth_cancel_url' => 'http://example.com/cancel',
+			'auth_logout_url' => 'http://example.com/logout',
 	),
 	
 	
@@ -35,10 +38,13 @@ return array(
 			'error_lang' => 'en_US',
 			'paypal_account' => 'paypal@example.com',
 			'paypal_micro_account' => 'paypal-micro@paypal.com', // see http://goo.gl/Z4yF 
-			'authenticaticon_url' => 'https://api-3t.sandbox.paypal.com/nvp',
+			'authentication_url' => 'https://api-3t.sandbox.paypal.com/nvp',
 			'authentication_version' => '64.0',
 			'webscr_url' => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
 			'adaptive_url' => 'https://svcs.sandbox.paypal.com',
+			'auth_return_url' => 'http://example.com/return',
+			'auth_cancel_url' => 'http://example.com/cancel',
+			'auth_logout_url' => 'http://example.com/logout',
 	),
 
 );
