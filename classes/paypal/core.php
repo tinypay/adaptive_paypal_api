@@ -20,9 +20,9 @@ abstract class PayPal_Core{
 		
 	}
 	
-	public static function get_auth_url($return_url = 'http://example.com'){
+	public static function get_auth_url($return_url = NULL, $cancel_url = NULL, $logout_url = NULL){
 		
-		$auth = PayPal::Auth(false)->SetAuthFlowParam($return_url);
+		$auth = PayPal::Auth(false)->SetAuthFlowParam($return_url, $cancel_url, $logout_url);
 		
 		if($auth->success){
 			
