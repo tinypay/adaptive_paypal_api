@@ -65,7 +65,7 @@ class PayPal_Auth{
 			'METHOD' => 'GetAuthDetails',
 		);
 		
-		$response = $this->send_request($post);	
+		$response = $this->send_request($post);
 			
 		if(isset($response['ACK']) AND $response['ACK'] === 'Success' 
 			AND isset($response['FIRSTNAME']) AND isset($response['LASTNAME']) 
