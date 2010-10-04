@@ -63,4 +63,29 @@ abstract class PayPal_Core{
 			
 		}
 	}
+	
+	public static function do_auth_logout($token){
+		
+		$config = Kohana::config('paypal.sandbox');
+		
+		$query = array(
+			'cmd' => '_account-authenticate-logout',
+			'token' => $token, 
+		);
+		
+		$url = $config['webscr_url'].'?'.http_build_query($query);
+		
+		$ch = curl_init();
+				
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+		curl_setopt($ch, CURLOPT_MAXREDIRS, 2);
+				
+		$return = curl_exec($ch);
+		
+	}
 }
