@@ -2,19 +2,34 @@
 
 abstract class PayPal_Core{
 	
-	public static function Payments($live = true){
+	public static $environment = 'sandbox';
+	public static $live = false;
+	
+	public static function Payments($live = NULL){
+		
+		if($live == NULL){
+			$live = PayPal::$live;
+		}
 		
 		return new PayPal_Adaptive('Payments', $live);
 		
 	}
 	
-	public static function Accounts($live = true){
+	public static function Accounts($live = NULL){
+		
+		if($live == NULL){
+			$live = PayPal::$live;
+		}
 		
 		return new PayPal_Adaptive('Accounts', $live);
 		
 	}
 	
-	public static function Auth($live = true){
+	public static function Auth($live = NULL){
+		
+		if($live == NULL){
+			$live = PayPal::$live;
+		}
 		
 		return new PayPal_Auth($live);
 		
@@ -22,7 +37,7 @@ abstract class PayPal_Core{
 	
 	public static function get_auth_url($return_url = NULL, $cancel_url = NULL, $logout_url = NULL){
 		
-		$auth = PayPal::Auth(false)->SetAuthFlowParam($return_url, $cancel_url, $logout_url);
+		$auth = PayPal::Auth()->SetAuthFlowParam($return_url, $cancel_url, $logout_url);
 		
 		if($auth->success){
 			
@@ -47,7 +62,7 @@ abstract class PayPal_Core{
 	
 	public static function get_auth_details($token){
 		
-		$get = PayPal::Auth(false)->GetAuthDetails($token);
+		$get = PayPal::Auth()->GetAuthDetails($token);
 		
 		if($get->success){
 			
@@ -66,7 +81,7 @@ abstract class PayPal_Core{
 	
 	public static function do_auth_logout($token){
 		
-		$config = Kohana::config('paypal.sandbox');
+		$config = Kohana::config('paypal.'.PayPal::$environment);
 		
 		$query = array(
 			'cmd' => '_account-authenticate-logout',
