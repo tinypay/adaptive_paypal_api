@@ -3,7 +3,7 @@
 abstract class PayPal_Core{
 	
 	public static $environment = 'sandbox';
-	public static $live = false	;
+	public static $live = false;
 	
 	public static function Payments($live = NULL){
 		
