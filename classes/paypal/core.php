@@ -3,7 +3,7 @@
 abstract class PayPal_Core{
 	
 	public static $environment = 'sandbox';
-	public static $live = true;
+	public static $live = false	;
 	
 	public static function Payments($live = NULL){
 		
@@ -38,6 +38,8 @@ abstract class PayPal_Core{
 	public static function get_auth_url($return_url = NULL, $cancel_url = NULL, $logout_url = NULL){
 		
 		$auth = PayPal::Auth()->SetAuthFlowParam($return_url, $cancel_url, $logout_url);
+		
+		echo Kohana::debug($auth);
 		
 		if($auth->success){
 			
