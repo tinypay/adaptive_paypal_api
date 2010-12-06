@@ -2,8 +2,8 @@
 
 abstract class PayPal_Core{
 	
-	public static $environment = 'sandbox';
-	public static $live = false;
+	public static $environment = 'live';
+	public static $live = true;
 	
 	public static function Payments($live = NULL){
 		
@@ -37,9 +37,7 @@ abstract class PayPal_Core{
 	
 	public static function get_auth_url($return_url = NULL, $cancel_url = NULL, $logout_url = NULL){
 		
-		$auth = PayPal::Auth()->SetAuthFlowParam($return_url, $cancel_url, $logout_url);
-		
-		echo Kohana::debug($auth);
+		$auth = PayPal::Auth(PayPal::$live)->SetAuthFlowParam($return_url, $cancel_url, $logout_url);
 		
 		if($auth->success){
 			
@@ -64,7 +62,7 @@ abstract class PayPal_Core{
 	
 	public static function get_auth_details($token){
 		
-		$get = PayPal::Auth()->GetAuthDetails($token);
+		$get = PayPal::Auth(PayPal::$live)->GetAuthDetails($token);
 		
 		if($get->success){
 			
