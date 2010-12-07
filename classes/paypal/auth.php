@@ -37,6 +37,10 @@ class PayPal_Auth{
 			'METHOD' => 'SetAuthFlowParam',
 		);
 		
+		if(isset($this->config['page_style']) AND !empty($this->config['page_style'])){
+			$post['PAGESTYLE'] = $this->config['page_style'];
+		}
+		
 		$response = $this->send_request($post);
 		
 		if(!empty($response) AND isset($response['TOKEN'])){
