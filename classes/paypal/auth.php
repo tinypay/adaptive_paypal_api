@@ -41,6 +41,10 @@ class PayPal_Auth{
 			$post['PAGESTYLE'] = $this->config['page_style'];
 		}
 		
+		if(isset($this->config['header_image']) AND !empty($this->config['header_image'])){
+			$post['HDRIMG'] = $this->config['header_image'];
+		}
+		
 		$response = $this->send_request($post);
 		
 		if(!empty($response) AND isset($response['TOKEN'])){
