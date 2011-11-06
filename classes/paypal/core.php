@@ -11,7 +11,18 @@ abstract class PayPal_Core{
 			$live = PayPal::$live;
 		}
 		
-		return new PayPal_Adaptive('Payments', $live);
+		return new PayPal_Adaptive('AdaptivePayments', $live);
+		
+	}
+	
+	
+	public static function Permissions($live = NULL){
+		
+		if($live == NULL){
+			$live = PayPal::$live;
+		}
+		
+		return new PayPal_Adaptive('Permissions', $live);
 		
 	}
 	
@@ -21,7 +32,7 @@ abstract class PayPal_Core{
 			$live = PayPal::$live;
 		}
 		
-		return new PayPal_Adaptive('Accounts', $live);
+		return new PayPal_Adaptive('AdaptiveAccounts', $live);
 		
 	}
 	

@@ -41,7 +41,7 @@ class PayPal_Adaptive{
 			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
 		}
 						
-		$url = $this->config['adaptive_url'].'/Adaptive'.$this->api_type.'/'.$method;
+		$url = $this->config['adaptive_url'].'/'.$this->api_type.'/'.$method;
 		
 		// curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
