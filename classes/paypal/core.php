@@ -4,7 +4,17 @@ abstract class PayPal_Core{
 	
 	public static $environment = 'live';
 	public static $live = true;
-	
+
+	public static function MassPay($live = NULL){
+		
+		if($live == NULL){
+			$live = PayPal::$live;
+		}
+		
+		return new PayPal_Adaptive('nvp', $live);
+		
+	}
+		
 	public static function Payments($live = NULL){
 		
 		if($live == NULL){

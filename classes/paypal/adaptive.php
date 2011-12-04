@@ -38,10 +38,19 @@ class PayPal_Adaptive{
 			$post['requestEnvelope.errorLanguage'] = $this->config['error_lang'];
 			$post['requestEnvelope.detailLevel'] = 'ReturnAll';
 			curl_setopt($ch, CURLOPT_POST, true);
+			if($this->api_type == 'nvp') {
+				$post['VERSION'] = urlencode('84.0');
+				$post['PWD'] = $this->config['security_password'];
+				$post['USER'] = $this->config['security_userid'];
+				$post['SIGNATURE'] = $this->config['security_signature'];
+			}
 			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
 		}
 						
 		$url = $this->config['adaptive_url'].'/'.$this->api_type.'/'.$method;
+		if($this->api_type == 'nvp') {
+			$url = 'https://api-3t.sandbox.paypal.com/nvp';
+		}
 		
 		// curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -54,7 +63,6 @@ class PayPal_Adaptive{
 		curl_setopt($ch, CURLOPT_SSLVERSION, 3);
 		
 		$curl_info = curl_getinfo($ch);
-		
 		$return = curl_exec($ch);
 		
 		$this->response = array();
