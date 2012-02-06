@@ -13,7 +13,7 @@ class PayPal_Auth{
 		
 		$this->live = $live;
 		$this->environment = $live ? 'live' : 'sandbox';
-		$this->config = Kohana::config('paypal.'.$this->environment);		
+		$this->config = Kohana::config('paypal');		
 	}
 	
 	public function SetAuthFlowParam($return_url = NULL, $cancel_url = NULL, $logout_url = NULL){

@@ -14,7 +14,7 @@ class PayPal_Adaptive{
 		$this->api_type = $api_type;
 		$this->live = $live;
 		$this->environment = $live ? 'live' : 'sandbox';
-		$this->config = Kohana::config('paypal.'.$this->environment);		
+		$this->config = Kohana::config('paypal');
 	}
 	
 	public function __call($method, $args){
