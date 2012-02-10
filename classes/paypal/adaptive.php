@@ -32,6 +32,10 @@ class PayPal_Adaptive{
 			'Expect:',
 		);
 		
+		if(isset($this->config['merchant_bonus_id'])){
+			$headers[] = 'X-PAYPAL-MERCHANT-REFERRAL-BONUS-ID: '. $this->config['merchant_bonus_id'];
+		}
+		
 		if(isset($args[0]) AND is_array($args[0])){
 			
 			$post = $args[0];
